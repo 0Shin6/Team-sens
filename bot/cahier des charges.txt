@@ -1,0 +1,9 @@
+Fonctionnalitées :
+
+Utilisateur :	
+	-Annonces de match 
+	-Notif quand on poste sur nos réseaux
+	-Annonces autres
+
+Modération :
+	-Modération
