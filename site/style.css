@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scrollbar-width: none;
 }
 
 body {
@@ -281,9 +282,214 @@ footer {
   transform: scale(1.05);
 }
 
-
 .hero .small-print {
   font-size: 12px;
   color: #fafafa;
   margin-top: 24px;
+}
+
+/* ======== STYLES DE LA PAGE ROSTER ======== */
+.roster-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; 
+  gap: 24px; 
+  width: 100%;
+  margin-top: 40px;
+}
+
+.roster-card {
+  background: rgba(228, 228, 228, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  
+  border: 1px solid rgba(255, 255, 255, 0.136);
+  border-radius: 20px;
+  padding: 32px;
+  
+  width: 100%;
+  max-width: 380px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.roster-card .game-logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 32px;
+  border-radius: 20px;
+}
+
+.roster-card .btn-roster {
+  background: #fff;
+  color: #000;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 12px 32px;
+  border-radius: 30px;
+  display: inline-block;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  margin-bottom: 24px;
+}
+
+.roster-card .btn-roster:hover {
+  background: #eee;
+  transform: scale(1.05);
+}
+
+.roster-card .game-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ======== STYLES DE LA PAGE ROSTER VALORANT ======== */
+.player-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 40px;
+}
+
+.player-card {
+  background: rgba(228, 228, 228, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.136);
+  border-radius: 20px;
+  padding: 24px;
+ 
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.player-info {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.player-name {
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff;
+}
+
+.player-role {
+  color: #ccc;
+  text-shadow: 0 0 5px #ccc, 0 0 10px #ccc;
+}
+
+.player-badges {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.badge-flag {
+  width: 24px;
+  height: 18px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.badge-color {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+}
+
+.badge-captain {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #E53935;
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+
+.card-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.player-pdp {
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0; 
+}
+
+.card-content p {
+  font-size: 14px;
+  color: #e0e0e0;
+  text-align: left;
+}
+
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.player-age {
+  font-size: 14px;
+  color: #ccc;
+}
+
+.player-number {
+  background-color: rgba(0, 0, 0, 0.456);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.player-role {
+  color: #ffff00;
+  text-shadow: 0 0 5px #fffc31, 0 0 10px #fff67e;
+}
+
+.role-initiateur {
+  color: #ff00dd;
+  text-shadow: 0 0 7px #ff5ae9, 0 0 10px #ff58fc; 
+}
+
+.role-flex {
+   color: #b300ff;
+  text-shadow: 0 0 7px #df51ff, 0 0 10px #e8b5ff; 
+}
+.role-duelist {
+  color: #ff0000;
+  text-shadow: 0 0 7px #ff1b1b, 0 0 10px #f48f8f;
+}
+
+.role-sentinel {
+  color: #00bd06; 
+  text-shadow: 0 0 7px #00ef08, 0 0 10px #003702; 
+}
+
+.role-smoker {
+  color: #00c4e6;
+  text-shadow: 0 0 7px #00aeac, 0 0 10px #c0fdff; 
 }
