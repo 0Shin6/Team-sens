@@ -53,7 +53,10 @@ body {
 }
 
 .navbar nav a:hover {
-    color: #cacaca;
+    text-shadow:
+        0 0 7px #d0d0d0,          
+        0 0 21px #d0d0d0,       
+        0 0 42px #d0d0d0;
 }
 
 main {
@@ -403,12 +406,6 @@ footer {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.badge-color {
-  width: 18px;
-  height: 18px;
-  border-radius: 3px;
-}
-
 .badge-captain {
   width: 24px;
   height: 24px;
@@ -538,3 +535,25 @@ footer {
   margin-right: 24px;
   border-radius: 6px;
 }
+
+/* ======== STYLES DE LA PAGE RÉSEAUX SOCIAUX ======== */
+.presentation-paragraph {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.about-img {
+   width: 200px;
+  height: auto;
+  margin-bottom: 32px;
+  border-radius: 20px;
+  align-items: right;
+}
+
+.upper-part .lower-part {
+  display: block;
+  justify-content: right;
+}
+
