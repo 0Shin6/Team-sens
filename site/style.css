@@ -227,7 +227,6 @@ footer {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   
-  border: 1px solid rgba(255, 255, 255, 0.136);
   border-radius: 20px;
   padding: 24px;
   
@@ -237,15 +236,15 @@ footer {
 }
 
 .product-image-container {
-  background: #19002858;
-  border-radius: 15px; 
   padding: 16px;
   margin-bottom: 24px;
+  
 }
 
 .product-image-container img {
   width: 100%;
   display: block;
+    border-radius : 15px;
 }
 
 .product-card .product-name {
