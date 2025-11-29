@@ -98,7 +98,7 @@ main {
     grid-template-columns: 1fr 1fr;
     gap: 24px;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1000px;
 }
 
 .widget {
@@ -115,7 +115,7 @@ main {
     font-size: 20px;
     font-weight: 700;
     color: #ddd;
-    margin-bottom: 16px; 
+    margin-bottom: 14px; 
 }
 
 .widget .game-type {
@@ -178,7 +178,7 @@ main {
 .result-info .score {
     font-size: 40px;
     font-weight: 900;
-    color: #76ff03; 
+    color: #7dff7a; 
 }
 
 .slider-nav {
@@ -286,6 +286,7 @@ footer {
 
 .hero .small-print {
   font-size: 12px;
+  font-style: italic;
   color: #fafafa;
   margin-top: 24px;
 }
@@ -556,3 +557,83 @@ footer {
   justify-content: right;
 }
 
+/* ======== STYLES DE LA PAGE CONTACT ======== */
+.contact-form {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.glass-form-container {
+  background: rgba(228, 228, 228, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.136);
+  border-radius: 30px;
+  
+  padding: 40px;
+  width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+
+.form-row {
+  display: flex;
+  gap: 24px; 
+  width: 100%;
+}
+
+.input-field {
+  width: 100%;
+  background-color: #e4e4e4;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 50px;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: #2a242f;
+  outline: none; 
+}
+
+.textarea-field {
+  border-radius: 20px; 
+  height: 200px; 
+  resize: none; 
+}
+
+.input-field::placeholder {
+  color: #3a2d42;
+  font-weight: 500;
+}
+
+.btn-send {
+  margin-top: 32px;
+  background-color: #e4e4e4;
+  color: #000;
+  border: none;
+  padding: 12px 60px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-send:hover {
+  background-color: #f0ddff;
+  transform: scale(1.05);
+}
+
+.little-comment {
+  margin-top: 12px;
+  color: #e4e4e4;
+  font-style: italic;
+  font-size: 11px;
+
+}
