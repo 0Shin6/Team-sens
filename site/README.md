@@ -30,3 +30,4 @@ Dans le répertoire site vous trouverez l'ensemble des fichiers du site web, en 
 
 * HTML
 * CSS
+* JavaScript
