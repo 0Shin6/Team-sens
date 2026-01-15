@@ -32,37 +32,35 @@
             <h1>Bienvenue sur le site officiel de la team Sens !</h1>
 
             <div class="widgets-container">
-
                 <div class="widget news">
                     <h2>Actualités</h2>
-                    <div class="slider-content">
-                        <img src="img/logo.jpg" alt="">
-                        <p>Bienvenue sur notre site officiel <strong>#SensTouch</strong></p>
+                    
+                    <div class="slider-content" id="news-slider">
+                        <img src="" alt="Image Actu" id="news-img">
+                        <p id="news-desc" style="margin-top: 15px; min-height: 50px;"></p>
                     </div>
-                    <div class="slider-nav">
-                        <span class="dot active"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                    </div>
+
+                    <div class="slider-nav" id="news-dots"></div>
                 </div>
 
                 <div class="widget matches">
                     <h2>Prochains matchs</h2>
-                    <div class="slider-content">
+                    
+                    <div class="slider-content" id="match-slider">
                         <div class="match-info">
-                            <img src="img/logo-seul.png" alt="Team Sens" class="team-logo">
+                            <img src="img/logo-seul.png" alt="Team A" class="team-logo" id="match-team-a">
+                            
                             <div class="match-details">
-                                <span>22/09</span>
-                                <span>21h</span>
+                                <span id="match-date" style="font-size: 1.2rem; display: block;"></span>
+                                <span id="match-heure" style="font-size: 1.5rem;"></span>
                             </div>
-                            <img src="img/logo-seul.png" alt="Team Sang" class="team-logo">
+                            
+                            <img src="img/logo-seul.png" alt="Team B" class="team-logo" id="match-team-b">
                         </div>
-                        <p class="game-type">Valorant</p>
+                        <p class="game-type" id="match-game" style="margin-top: 10px;"></p>
                     </div>
-                    <div class="slider-nav">
-                        <span class="dot active"></span>
-                        <span class="dot"></span>
-                    </div>
+
+                    <div class="slider-nav" id="match-dots"></div>
                 </div>
 
                 <div class="widget result">
@@ -76,14 +74,12 @@
                     </div>
                     <p class="game-type">Valorant</p>
                 </div>
-
             </div>
-        </section>
     </main>
 
     <footer>
         <p>Copyright &copy; - Team Sens. Tous droits réservés</p>
     </footer>
-
+    <script src="script.js"></script>
 </body>
 </html>

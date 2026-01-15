@@ -37,7 +37,7 @@ body {
 .logo img {
     height: 40px;
 }
-
+ 
 .navbar nav ul {
     display: flex;
     list-style: none;
@@ -128,17 +128,18 @@ main {
 .widget.news {
     grid-column: 1 / 2;
 }
+
 .widget.news .slider-content img {
     width: 100%;
     max-width: 150px;
     border-radius: 10px;
     margin-bottom: 12px;
 }
+
 .widget.news .slider-content p {
     font-size: 14px;
     color: #e8e8e8;
 }
-
 
 .widget.matches {
     grid-column: 2 / 3;
@@ -276,12 +277,15 @@ footer {
   padding: 12px 32px;
   border-radius: 30px;
   display: inline-block;
-  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .product-card .btn-buy:hover {
   background: #f0ddff;
-  transform: scale(1.05);
+  color: #380062;
+  box-shadow:
+    0 0 7px #ead0ff,          
+    0 0 21px #ead0ff,       
+    0 0 42px #ead0ff;
 }
 
 .hero .small-print {
@@ -339,14 +343,18 @@ footer {
 }
 
 .roster-card .btn-roster:hover {
-  background: #eee;
-  transform: scale(1.05);
+background: #f0ddff;
+  color: #380062;
+  box-shadow:
+    0 0 7px #ead0ff,          
+    0 0 21px #ead0ff,       
+    0 0 42px #ead0ff;
 }
 
 .roster-card .game-name {
   font-size: 20px;
   font-weight: 700;
-  color: #fff;
+  color: #ededed;
 }
 
 /* ======== STYLES DE LA PAGE ROSTER VALORANT ======== */
@@ -525,7 +533,7 @@ footer {
 }
 
 .social-link-card:hover {
-  transform: scale(1.02); 
+  transform: scale(1.005); 
   background: rgba(228, 228, 228, 0.6); 
 }
 
@@ -536,7 +544,7 @@ footer {
   border-radius: 6px;
 }
 
-/* ======== STYLES DE LA PAGE RÉSEAUX SOCIAUX ======== */
+/* ======== STYLES DE LA PAGE À PROPOS ======= */
 .presentation-paragraph {
   font-size: 14px;
   display: block;
@@ -626,8 +634,12 @@ footer {
 }
 
 .btn-send:hover {
-  background-color: #f0ddff;
-  transform: scale(1.05);
+background: #f0ddff;
+color: #380062;
+box-shadow:
+  0 0 7px #ead0ff,          
+  0 0 21px #ead0ff,       
+  0 0 42px #ead0ff;
 }
 
 .little-comment {
@@ -636,4 +648,18 @@ footer {
   font-style: italic;
   font-size: 11px;
 
+}
+
+.fade-anim {
+    animation: fadeEffect 0.5s ease-in-out;
+}
+
+@keyframes fadeEffect {
+    from { opacity: 0.4; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dot {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
