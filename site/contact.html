@@ -30,20 +30,21 @@
     <main>
         <section class="hero">  
             <h1>Contactez nous !</h1>
-            <form class="contact-form" action="mailto:mailasaisir@sens.fr" method="post" enctype="text/plain">                
+            <form class="contact-form" data-endpoint="http://127.0.0.1:3000/api/contact">                
                 <div class="glass-form-container">                  
                     <div class="form-row">
-                        <input type="email" name="email" placeholder="Adresse e-mail*" required class="input-field">
-                        <input type="text" name="nom" placeholder="Nom*" required class="input-field">
+                        <input type="email" id="contact-email" name="email" placeholder="Adresse e-mail*" required class="input-field">
+                        <input type="text" id="contact-nom" name="nom" placeholder="Nom*" required class="input-field">
                     </div>
 
                     <div class="form-row">
-                        <input type="text" name="Pseudo discord" placeholder="Pseudo discord (Optionnel)" class="input-field">
-                        <input type="text" name="objet" placeholder="Objet*" required class="input-field">
+                        <input type="text" id="contact-discord" name="discord" placeholder="Pseudo discord (Optionnel)" class="input-field">
+                        <input type="text" id="contact-objet" name="objet" placeholder="Objet*" required class="input-field">
                     </div>
-                    <textarea name="message" placeholder="Votre message...*" required class="input-field textarea-field"></textarea> 
+                    <textarea id="contact-message" name="message" placeholder="Votre message...*" required class="input-field textarea-field"></textarea> 
                 </div>
                 <button type="submit" class="btn-send">Envoyer</button>
+                <p id="contact-status" class="little-comment"></p>
                 <p class="little-comment">* = Champs obligatoire</p>
             </form>
         </section>
@@ -52,6 +53,6 @@
     <footer>
         <p>Copyright - Team Sens. Tous droits réservés</p>
     </footer>
-
+    <script src="script.js"></script>
 </body>
 </html>

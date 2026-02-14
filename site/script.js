@@ -98,4 +98,59 @@ document.addEventListener("DOMContentLoaded", function() {
         setupSlider(matchesData, "match");
     }
 
+    const contactForm = document.querySelector(".contact-form");
+    if (contactForm) {
+        const statusEl = document.getElementById("contact-status");
+        const endpoint = contactForm.getAttribute("data-endpoint");
+
+        contactForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            if (!endpoint) {
+                if (statusEl) statusEl.textContent = "Endpoint manquant.";
+                return;
+            }
+
+            const email = document.getElementById("contact-email").value.trim();
+            const nom = document.getElementById("contact-nom").value.trim();
+            const discord = document.getElementById("contact-discord").value.trim();
+            const objet = document.getElementById("contact-objet").value.trim();
+            const message = document.getElementById("contact-message").value.trim();
+
+            if (!email || !nom || !objet || !message) {
+                if (statusEl) statusEl.textContent = "Merci de remplir tous les champs obligatoires.";
+                return;
+            }
+
+            const payload = {
+                email,
+                nom,
+                discord: discord || null,
+                objet,
+                message
+            };
+
+            if (statusEl) statusEl.textContent = "Envoi en cours...";
+
+            try {
+                const res = await fetch(endpoint, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json().catch(() => null);
+
+                if (res.ok) {
+                    if (statusEl) statusEl.textContent = "Message envoyé !";
+                    contactForm.reset();
+                } else {
+                    if (statusEl) statusEl.textContent = (data && data.message) ? data.message : "Erreur lors de l'envoi.";
+                }
+            } catch (err) {
+                if (statusEl) statusEl.textContent = "Erreur réseau.";
+            }
+        });
+    }
+
 });
