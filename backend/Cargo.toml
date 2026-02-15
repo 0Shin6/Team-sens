@@ -11,3 +11,4 @@ serde_json = "1"
 sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "sqlite"] } 
 tower-http = { version = "0.5", features = ["cors"] } 
 dotenv = "0.15"
+reqwest = { version = "0.12", features = ["json", "rustls-tls"] }
