@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {    
+    const API_BASE = "http://127.0.0.1:3000/api";
+
     const newsData = [
         {
             img: "img/logo.jpg", 
@@ -14,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     ];
 
-    const matchesData = [
+    const fallbackMatchesData = [
         {
             teamA: "img/logo-seul.png", 
             teamB: "img/logo-seul.png",
@@ -30,6 +32,34 @@ document.addEventListener("DOMContentLoaded", function() {
             jeu: "Rocket League"
         }
     ];
+
+    async function getMatchesData() {
+        try {
+            const response = await fetch(`${API_BASE}/matches`);
+            if (!response.ok) {
+                return fallbackMatchesData;
+            }
+
+            const data = await response.json();
+            if (!Array.isArray(data) || data.length === 0) {
+                return fallbackMatchesData;
+            }
+
+            return data.map((item) => {
+                const dateText = typeof item.date === "string" ? item.date : "";
+                const [datePart, heurePart] = dateText.split(" ", 2);
+                return {
+                    teamA: item.teamA || "img/logo-seul.png",
+                    teamB: item.teamB || "img/logo-seul.png",
+                    date: datePart || dateText || "A definir",
+                    heure: heurePart || "A definir",
+                    jeu: item.jeu || "Inconnu"
+                };
+            });
+        } catch (error) {
+            return fallbackMatchesData;
+        }
+    }
 
     function setupSlider(data, containerType) {
         let currentIndex = 0;
@@ -95,7 +125,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     if(document.getElementById("match-slider")) {
-        setupSlider(matchesData, "match");
+        getMatchesData().then((matches) => {
+            setupSlider(matches, "match");
+        });
     }
 
     const contactForm = document.querySelector(".contact-form");

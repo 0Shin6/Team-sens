@@ -57,8 +57,15 @@ struct MatchItem {
     #[serde(rename = "teamA")]
     team_a: String,
 
+    #[serde(rename = "teamAName")]
+    team_a_name: String,
+
     #[serde(rename = "teamB")]
     team_b: String,
+
+    #[serde(rename = "teamBName")]
+    team_b_name: String,
+
     score: String,
 
     #[serde(rename = "date")] 
@@ -72,7 +79,27 @@ async fn get_news(State(state): State<AppState>) -> Json<Vec<NewsItem>> {
 }
 
 async fn get_matches(State(state): State<AppState>) -> Json<Vec<MatchItem>> {
-    let matches = sqlx::query_as::<_, MatchItem>("SELECT id, team_a, team_b, score, date_heure, jeu FROM matches ORDER BY id DESC LIMIT 5").fetch_all(&state.pool).await.unwrap_or_else(|_| vec![]);
+    let matches = sqlx::query_as::<_, MatchItem>(
+        "
+        SELECT
+            m.id,
+            COALESCE(ta.logo, m.team_a) AS team_a,
+            COALESCE(ta.nom, m.team_a) AS team_a_name,
+            COALESCE(tb.logo, m.team_b) AS team_b,
+            COALESCE(tb.nom, m.team_b) AS team_b_name,
+            m.score,
+            m.date_heure,
+            m.jeu
+        FROM matches m
+        LEFT JOIN teams ta ON UPPER(ta.abreviation) = UPPER(m.team_a)
+        LEFT JOIN teams tb ON UPPER(tb.abreviation) = UPPER(m.team_b)
+        ORDER BY m.id DESC
+        LIMIT 5
+        ",
+    )
+    .fetch_all(&state.pool)
+    .await
+    .unwrap_or_else(|_| vec![]);
     Json(matches)
 }
 
