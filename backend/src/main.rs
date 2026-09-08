@@ -211,3 +211,44 @@ async fn send_dm(client: &Client, token: &str, id_recip: &str, contenu: &str) ->
 
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::{MatchItem, NewsItem};
+
+    #[test]
+    fn serializes_news_with_frontend_field_names() {
+        let news = NewsItem {
+            id: 1,
+            titre: "Tournoi gagné".to_string(),
+            image: "img/tournoi.png".to_string(),
+            description: "Victoire en finale".to_string(),
+        };
+
+        let json = serde_json::to_value(news).expect("news should serialize");
+
+        assert_eq!(json["img"], "img/tournoi.png");
+        assert_eq!(json["desc"], "Victoire en finale");
+        assert!(json.get("image").is_none());
+    }
+
+    #[test]
+    fn serializes_match_with_frontend_field_names() {
+        let match_item = MatchItem {
+            id: 1,
+            team_a: "logo-a.png".to_string(),
+            team_a_name: "Team A".to_string(),
+            team_b: "logo-b.png".to_string(),
+            team_b_name: "Team B".to_string(),
+            score: "-".to_string(),
+            date_heure: "22/09 21h".to_string(),
+            jeu: "Valorant".to_string(),
+        };
+
+        let json = serde_json::to_value(match_item).expect("match should serialize");
+
+        assert_eq!(json["teamA"], "logo-a.png");
+        assert_eq!(json["teamBName"], "Team B");
+        assert_eq!(json["date"], "22/09 21h");
+    }
+}
