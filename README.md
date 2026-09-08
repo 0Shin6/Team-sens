@@ -109,6 +109,17 @@ python backend/bot/bot.py
 
 Ne jamais publier le fichier `.env` ni le token du bot.
 
+## Tests
+
+Les tests peuvent être lancés séparément depuis la racine du projet :
+
+```bash
+cargo test --manifest-path backend/Cargo.toml
+.venv/bin/python -m unittest discover -s backend/bot -p 'test_*.py'
+```
+
+Les tests Rust vérifient le format JSON envoyé au frontend. Les tests Python couvrent la normalisation des abréviations et les opérations principales sur les matchs et les équipes avec une base SQLite temporaire.
+
 ## CI/CD
 
 Le workflow [`.github/workflows/ci-cd.yml`](.github/workflows/ci-cd.yml) s'exécute sur les pull requests et les pushs vers `master`.
@@ -123,4 +134,4 @@ Pour activer la publication, choisir **GitHub Actions** comme source dans `Setti
 
 ## Objectif du projet
 
-Ce projet m'a permis de travailler sur l'ensemble du cycle de création d'un produit web : recueil des besoins, conception sur Figma, intégration frontend, développement d'une API, stockage SQLite, automatisation via un bot Discord et mise en place d'une chaîne CI/CD.
+Ce projet m'a permis de travailler sur l'ensemble du cycle de création d'un produit web : recueil des besoins, conception sur Figma, intégration frontend, développement d'une API, stockage SQLite, automatisation via un bot Discord et mise en place d'une chaîne CI/CD. En plus de cela, cela permet à LowSens d'avoir un site complet fonctionnel et sur mesure avec la capacité de le mettre à jour sans passer par un développeur (pour les acutalités et les matchs)

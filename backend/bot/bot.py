@@ -10,7 +10,6 @@ load_dotenv(dotenv_path=env_path)
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 db_path = Path(__file__).resolve().parents[1] / "teamsens.db"
-conn = sqlite3.connect(db_path)
 
 
 def init_database() -> None:
