@@ -16,10 +16,57 @@ async function loadComponent(targetId, componentPath) {
     }
 }
 
+async function loadButtonTemplate() {
+    try {
+        const response = await fetch("components/button.html");
+        if (!response.ok) {
+            return "";
+        }
+
+        return await response.text();
+    } catch (error) {
+        console.warn("Impossible de charger le composant bouton :", error);
+        return "";
+    }
+}
+
+async function loadButton(targetId, buttonType) {
+    const target = document.getElementById(targetId);
+    if (!target) {
+        return;
+    }
+
+    if (!loadButtonTemplateCache) {
+        loadButtonTemplateCache = await loadButtonTemplate();
+    }
+
+    if (!loadButtonTemplateCache) {
+        return;
+    }
+
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = loadButtonTemplateCache;
+
+    const button = wrapper.querySelector(`[data-button-type="${buttonType}"]`);
+    if (!button) {
+        return;
+    }
+
+    target.innerHTML = button.innerHTML;
+}
+
+let loadButtonTemplateCache = "";
+
 document.addEventListener("DOMContentLoaded", async function() {
     await Promise.all([
         loadComponent("site-navbar", "components/navbar.html"),
         loadComponent("site-footer", "components/footer.html")
+    ]);
+
+    await Promise.all([
+        loadButton("btn-roster", "roster"),
+        loadButton("btn-buy", "buy"),
+        loadButton("btn-send", "send")
     ]);
 
     const API_BASE = "http://127.0.0.1:3000/api";
