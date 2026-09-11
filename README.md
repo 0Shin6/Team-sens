@@ -1,4 +1,4 @@
-# Team Sens
+# Low Sens
 
 Site officiel d'une structure e-sport, construit pour présenter son identité, ses équipes, ses actualités et ses compétitions. Le projet combine un site vitrine, une API Rust et un bot Discord pour administrer les données de la team.
 

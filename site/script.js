@@ -1,4 +1,27 @@
-document.addEventListener("DOMContentLoaded", function() {    
+async function loadComponent(targetId, componentPath) {
+    const target = document.getElementById(targetId);
+    if (!target) {
+        return;
+    }
+
+    try {
+        const response = await fetch(componentPath);
+        if (!response.ok) {
+            return;
+        }
+
+        target.innerHTML = await response.text();
+    } catch (error) {
+        console.warn(`Impossible de charger ${componentPath}:`, error);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", async function() {
+    await Promise.all([
+        loadComponent("site-navbar", "components/navbar.html"),
+        loadComponent("site-footer", "components/footer.html")
+    ]);
+
     const API_BASE = "http://127.0.0.1:3000/api";
 
     const newsData = [
