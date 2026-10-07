@@ -63,6 +63,23 @@ document.addEventListener("DOMContentLoaded", async function() {
         loadComponent("site-footer", "components/footer.html")
     ]);
 
+    const themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) {
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'light') {
+            document.body.classList.add('light-theme');
+        }
+
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            if (document.body.classList.contains('light-theme')) {
+                localStorage.setItem('theme', 'light');
+            } else {
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    }
+
     await Promise.all([
         loadButton("btn-roster", "roster"),
         loadButton("btn-buy", "buy"),

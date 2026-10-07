@@ -11,27 +11,65 @@ body {
     color: #fff;
 }
 
-.navbar {
+.nav-wrapper {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 17px;
     width: 100%;
+    left: 0;
     z-index: 1000; 
-
-    background: rgba(30, 30, 30, 0.4);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.136);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
 }
 
-.nav-container {
+.navbar.nav-pill {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
+    gap: 48px;
 
-    padding: 16px 32px 16px 0;
+    background: rgba(16, 0, 44, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 300px;
+    box-shadow: 0 10px 25px rgba(121, 4, 255, 0.75);
+    padding: 10px 40px;
+    pointer-events: auto;
+}
+
+.theme-toggle-btn {
+    position: absolute;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(16, 0, 44, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 10px 25px rgba(121, 4, 255, 0.75);
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    color: white;
+    pointer-events: auto;
+}
+
+.theme-toggle-btn .sun-icon {
+    display: none;
+}
+.theme-toggle-btn .moon-icon {
+    display: block;
+}
+
+body.light-theme .theme-toggle-btn .sun-icon {
+    display: block;
+}
+body.light-theme .theme-toggle-btn .moon-icon {
+    display: none;
 }
 
 .logo img {
@@ -205,11 +243,18 @@ main {
 }
 
 footer {
-    background-color: #08070700;
+    background: rgba(16, 0, 44, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 30px;
+    box-shadow: 0 10px 25px rgba(121, 4, 255, 0.75);
     text-align: center;
     padding: 24px;
-    color: #d3d3d3;
+    color: #fff;
     font-size: 13px;
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto 20px auto;
 }
 
 /* ======== STYLES DE LA PAGE BOUTIQUE ======== */
@@ -276,22 +321,23 @@ footer {
 }
 
 .product-card .btn-buy {
-  background: #e9e9e9;
-  color: #0e0019;
+  background: rgba(16, 0, 44, 0.8);
+  color: #fff;
   font-weight: 700;
   text-decoration: none;
   padding: 12px 32px;
   border-radius: 30px;
   display: inline-block;
+  box-shadow: 0 4px 15px rgba(121, 4, 255, 0.4);
+  transition: all 0.3s ease;
 }
 
 .product-card .btn-buy:hover {
-  background: #f0ddff;
-  color: #380062;
+  background: rgba(121, 4, 255, 0.9);
+  color: #fff;
   box-shadow:
-    0 0 7px #ead0ff,          
-    0 0 21px #ead0ff,       
-    0 0 42px #ead0ff;
+    0 0 10px rgba(121, 4, 255, 0.8),          
+    0 0 20px rgba(121, 4, 255, 0.6);
 }
 
 .hero .small-print {
@@ -337,24 +383,24 @@ footer {
 }
 
 .roster-card .btn-roster {
-  background: #fff;
-  color: #000;
+  background: rgba(16, 0, 44, 0.8);
+  color: #fff;
   font-weight: 700;
   text-decoration: none;
   padding: 12px 32px;
   border-radius: 30px;
   display: inline-block;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 4px 15px rgba(121, 4, 255, 0.4);
+  transition: all 0.3s ease;
   margin-bottom: 24px;
 }
 
 .roster-card .btn-roster:hover {
-background: #f0ddff;
-  color: #380062;
+  background: rgba(121, 4, 255, 0.9);
+  color: #fff;
   box-shadow:
-    0 0 7px #ead0ff,          
-    0 0 21px #ead0ff,       
-    0 0 42px #ead0ff;
+    0 0 10px rgba(121, 4, 255, 0.8),          
+    0 0 20px rgba(121, 4, 255, 0.6);
 }
 
 .roster-card .game-name {
@@ -628,24 +674,24 @@ background: #f0ddff;
 
 .btn-send {
   margin-top: 32px;
-  background-color: #e4e4e4;
-  color: #000;
+  background: rgba(16, 0, 44, 0.8);
+  color: #fff;
   border: none;
   padding: 12px 60px;
   border-radius: 50px;
   font-size: 18px;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 4px 15px rgba(121, 4, 255, 0.4);
+  transition: all 0.3s ease;
 }
 
 .btn-send:hover {
-background: #f0ddff;
-color: #380062;
-box-shadow:
-  0 0 7px #ead0ff,          
-  0 0 21px #ead0ff,       
-  0 0 42px #ead0ff;
+  background: rgba(121, 4, 255, 0.9);
+  color: #fff;
+  box-shadow:
+    0 0 10px rgba(121, 4, 255, 0.8),          
+    0 0 20px rgba(121, 4, 255, 0.6);
 }
 
 .little-comment {
@@ -668,4 +714,73 @@ box-shadow:
 .dot {
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+/* ======== THEME TOGGLE ======== */
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.1);
+}
+
+/* ======== LIGHT THEME ======== */
+body.light-theme {
+    background-color: #f5f5f5;
+    color: #222;
+}
+
+body.light-theme .navbar,
+body.light-theme .theme-toggle-btn {
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 10px 25px rgba(121, 4, 255, 0.2);
+    color: #222;
+}
+
+body.light-theme .navbar nav a {
+    color: #222;
+}
+
+body.light-theme .navbar nav a:hover {
+    text-shadow: 0 0 10px rgba(121, 4, 255, 0.5);
+}
+
+body.light-theme footer {
+    background: rgba(255, 255, 255, 0.7);
+    color: #222;
+    box-shadow: 0 10px 25px rgba(121, 4, 255, 0.2);
+}
+
+body.light-theme .widget, 
+body.light-theme .roster-card, 
+body.light-theme .player-card, 
+body.light-theme .product-card, 
+body.light-theme .social-link-card, 
+body.light-theme .glass-form-container {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #222;
+}
+
+body.light-theme .widget h2, 
+body.light-theme .product-name, 
+body.light-theme .game-name, 
+body.light-theme .player-name {
+    color: #111;
+}
+
+body.light-theme .product-card .product-price,
+body.light-theme .social-link-card,
+body.light-theme .player-number {
+    color: #222;
+}
+
+body.light-theme .player-number {
+    background-color: rgba(255, 255, 255, 0.6);
 }
