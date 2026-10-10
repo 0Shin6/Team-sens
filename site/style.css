@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: #000;
+    background-color: #0f0020;
     color: #fff;
 }
 
@@ -106,14 +106,6 @@ main {
     padding: 32px;
     text-align: center;
     
-    background-image: url('img/background.png');
-    
-    background-attachment: fixed;
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -123,12 +115,6 @@ main {
     font-size: 40px;
     font-weight: 900;
     margin-bottom: 40px;
-    color: #f0ffff; 
-
-    text-shadow:
-        0 0 7px #d0d0d0,          
-        0 0 21px #d0d0d0,       
-        0 0 42px #d0d0d0;
 }
 
 .widgets-container {
@@ -140,12 +126,6 @@ main {
 }
 
 .widget {
-    background: rgba(228, 228, 228, 0.4);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    
-    border: 1px solid rgba(255, 255, 255, 0.136);
-    border-radius: 20px;
     padding: 24px;
 }
 
@@ -243,18 +223,202 @@ main {
 }
 
 footer {
-    background: rgba(16, 0, 44, 0.6);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-radius: 30px;
-    box-shadow: 0 10px 25px rgba(121, 4, 255, 0.75);
     text-align: center;
-    padding: 24px;
-    color: #fff;
-    font-size: 13px;
-    width: 90%;
+}
+
+/* ======== STYLES DE LA PAGE D'ACCUEIL ======== */
+.home-page main {
+    padding-top: 78px;
+}
+
+.home-page .hero {
+    min-height: calc(100vh - 78px);
+    padding: 78px 24px 72px;
+}
+
+.home-page .hero h1 {
     max-width: 1000px;
-    margin: 40px auto 20px auto;
+    margin-bottom: 66px;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.15;
+    letter-spacing: -0.04em;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 24px rgba(255, 255, 255, 0.28);
+}
+
+.home-page .widget {
+    min-height: 300px;
+    padding: 18px 24px 14px;
+    border: 1px solid rgba(92, 0, 155, 0.25);
+    border-radius: 40px;
+    background: rgba(18, 0, 44, 0.72);
+    box-shadow: 0 12px 25px rgba(121, 4, 255, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.home-page .widget h2 {
+    margin-bottom: 16px;
+    color: #fff;
+    font-size: 14px;
+    text-shadow: 0 0 14px rgba(255, 255, 255, 0.55);
+}
+
+.home-page .widget.news .slider-content img {
+    width: min(150px, 65%);
+    height: 150px;
+    margin: 8px auto 12px;
+    object-fit: contain;
+    border-radius: 24px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
+}
+
+.home-page .widget.news .slider-content p {
+    min-height: 28px;
+    margin-top: 15px;
+    color: #fff;
+    font-size: 12px;
+}
+
+.home-page .slider-nav {
+    gap: 7px;
+    margin-top: 14px;
+}
+
+.home-page .dot {
+    width: 7px;
+    height: 7px;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.home-page .dot.active {
+    background: #bf65ff;
+    box-shadow: 0 0 8px #bf65ff;
+}
+
+.home-page .match-info {
+    margin-top: 58px;
+}
+
+.home-page .team-logo {
+    width: 62px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.home-page .match-details {
+    font-size: 19px;
+    line-height: 1.25;
+}
+
+.home-page .match-details span {
+    display: block;
+    font-size: 19px;
+}
+
+.home-page .widget .game-type {
+    margin-top: 14px;
+    color: #fff;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.home-page .widget.result {
+    grid-column: 1 / -1;
+    min-height: 180px;
+    padding: 18px 28px 10px;
+}
+
+.home-page .result-info {
+    padding: 4px 0;
+}
+
+.home-page .result-info .team-logo {
+    width: 72px;
+    height: 54px;
+}
+
+.home-page .result-info .team-name {
+    font-size: 20px;
+}
+
+.home-page .result-info .score {
+    font-size: 34px;
+    text-shadow: 0 0 15px rgba(125, 255, 122, 0.7);
+}
+
+.home-page footer {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 16px 24px;
+    border-radius: 0;
+    background: rgba(25, 16, 39, 0.92);
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 10px;
+}
+
+@media (max-width: 800px) {
+    .home-page .widgets-container {
+        gap: 24px;
+    }
+
+    .home-page .widget {
+        min-height: 260px;
+    }
+
+    .home-page .widget.result {
+        min-height: 170px;
+    }
+
+    .home-page .hero h1 {
+        margin-bottom: 42px;
+    }
+}
+
+@media (max-width: 620px) {
+    .home-page main {
+        padding-top: 74px;
+    }
+
+    .home-page .hero {
+        min-height: auto;
+        padding: 70px 16px 48px;
+    }
+
+    .home-page .widgets-container {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+    }
+
+    .home-page .widget.news,
+    .home-page .widget.matches,
+    .home-page .widget.result {
+        grid-column: 1;
+    }
+
+    .home-page .widget.result {
+        min-height: 180px;
+    }
+
+    .home-page .result-info .team-name {
+        font-size: 16px;
+    }
+
+    .home-page .result-info .team-logo {
+        width: 64px;
+    }
+
+    .home-page .match-info {
+        margin-top: 42px;
+    }
+
+    .home-page .match-details,
+    .home-page .match-details span {
+        font-size: 22px;
+    }
 }
 
 /* ======== STYLES DE LA PAGE BOUTIQUE ======== */
@@ -275,11 +439,6 @@ footer {
 }
 
 .product-card {
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  
-  border-radius: 20px;
   padding: 24px;
   
   width: 100%;
@@ -359,12 +518,6 @@ footer {
 }
 
 .roster-card {
-  background: rgba(228, 228, 228, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  
-  border: 1px solid rgba(255, 255, 255, 0.136);
-  border-radius: 20px;
   padding: 32px;
   
   width: 100%;
@@ -420,11 +573,6 @@ footer {
 }
 
 .player-card {
-  background: rgba(228, 228, 228, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.136);
-  border-radius: 20px;
   padding: 24px;
  
   display: flex;
@@ -446,11 +594,6 @@ footer {
 .player-name {
   color: #fff;
   text-shadow: 0 0 5px #fff, 0 0 10px #fff;
-}
-
-.player-role {
-  color: #ccc;
-  text-shadow: 0 0 5px #ccc, 0 0 10px #ccc;
 }
 
 .player-badges {
@@ -563,12 +706,6 @@ footer {
 }
 
 .social-link-card {
-  background: rgba(228, 228, 228, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.136);
-  border-radius: 20px;
-  
   padding: 16px 24px;
   
   display: flex;
@@ -612,11 +749,6 @@ footer {
   align-items: right;
 }
 
-.upper-part .lower-part {
-  display: block;
-  justify-content: right;
-}
-
 /* ======== STYLES DE LA PAGE CONTACT ======== */
 .contact-form {
   width: 100%;
@@ -628,12 +760,6 @@ footer {
 }
 
 .glass-form-container {
-  background: rgba(228, 228, 228, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.136);
-  border-radius: 30px;
-  
   padding: 40px;
   width: 100%;
   
@@ -714,6 +840,38 @@ footer {
 .dot {
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+/* ======== DESIGN COMMUN ======== */
+.hero h1 {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 24px rgba(255, 255, 255, 0.28);
+}
+
+.widget,
+.roster-card,
+.player-card,
+.product-card,
+.social-link-card,
+.glass-form-container {
+    background: rgba(18, 0, 44, 0.72);
+    border: 1px solid rgba(92, 0, 155, 0.25);
+    border-radius: 24px;
+    box-shadow: 0 12px 25px rgba(121, 4, 255, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+footer {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 16px 24px;
+    border-radius: 0;
+    background: rgba(25, 16, 39, 0.92);
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 10px;
 }
 
 /* ======== THEME TOGGLE ======== */
