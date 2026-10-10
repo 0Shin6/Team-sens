@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         },
         {
             img: "img/maillot.png", 
-            desc: "La Team Sens remporte le tournoi d'hiver !"
+            desc: "LowSens remporte le tournoi d'hiver !"
         },
         {
             img: "img/valorant.png",
