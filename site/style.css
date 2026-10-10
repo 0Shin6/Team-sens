@@ -421,6 +421,21 @@ footer {
     }
 }
 
+@media (max-width: 700px) {
+    .contact-form {
+        max-width: 440px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .glass-form-container {
+        padding: 24px 16px;
+    }
+}
+
 /* ======== STYLES DE LA PAGE BOUTIQUE ======== */
 
 .hero .subtitle {
@@ -480,23 +495,21 @@ footer {
 }
 
 .product-card .btn-buy {
-  background: rgba(16, 0, 44, 0.8);
-  color: #fff;
+  background: linear-gradient(100deg, #bf75f4 0%, #7540ed 50%, #7540ed 50%, #bf75f4 100%);
+  background-size: 200% 100%;
+  background-position: left center;
+  color: #19002d;
   font-weight: 700;
   text-decoration: none;
-  padding: 12px 32px;
+  padding: 10px 32px;
   border-radius: 30px;
   display: inline-block;
-  box-shadow: 0 4px 15px rgba(121, 4, 255, 0.4);
-  transition: all 0.3s ease;
+  box-shadow: 0 5px 14px rgba(121, 4, 255, 0.35);
+  transition: background-position 0.35s ease;
 }
 
 .product-card .btn-buy:hover {
-  background: rgba(121, 4, 255, 0.9);
-  color: #fff;
-  box-shadow:
-    0 0 10px rgba(121, 4, 255, 0.8),          
-    0 0 20px rgba(121, 4, 255, 0.6);
+  background-position: right center;
 }
 
 .hero .small-print {
@@ -536,24 +549,22 @@ footer {
 }
 
 .roster-card .btn-roster {
-  background: rgba(16, 0, 44, 0.8);
-  color: #fff;
+  background: linear-gradient(100deg, #bf75f4 0%, #7540ed 50%, #7540ed 50%, #bf75f4 100%);
+  background-size: 200% 100%;
+  background-position: left center;
+  color: #19002d;
   font-weight: 700;
   text-decoration: none;
-  padding: 12px 32px;
+  padding: 10px 32px;
   border-radius: 30px;
   display: inline-block;
-  box-shadow: 0 4px 15px rgba(121, 4, 255, 0.4);
-  transition: all 0.3s ease;
+  box-shadow: 0 5px 14px rgba(121, 4, 255, 0.35);
+  transition: background-position 0.35s ease;
   margin-bottom: 24px;
 }
 
 .roster-card .btn-roster:hover {
-  background: rgba(121, 4, 255, 0.9);
-  color: #fff;
-  box-shadow:
-    0 0 10px rgba(121, 4, 255, 0.8),          
-    0 0 20px rgba(121, 4, 255, 0.6);
+  background-position: right center;
 }
 
 .roster-card .game-name {
@@ -752,77 +763,77 @@ footer {
 /* ======== STYLES DE LA PAGE CONTACT ======== */
 .contact-form {
   width: 100%;
-  max-width: 1000px;
+  max-width: 960px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 26px;
 }
 
 .glass-form-container {
-  padding: 40px;
+  padding: 30px 20px;
   width: 100%;
   
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 22px;
+  border-radius: 40px;
 }
 
 
 .form-row {
   display: flex;
-  gap: 24px; 
+  gap: 18px;
   width: 100%;
 }
 
 .input-field {
   width: 100%;
-  background-color: #e4e4e4;
+  background-color: #b696c7;
   border: none;
-  padding: 16px 24px;
+  padding: 8px 10px;
   border-radius: 50px;
   font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  color: #2a242f;
+  font-size: 12px;
+  color: #29002c;
   outline: none; 
 }
 
 .textarea-field {
-  border-radius: 20px; 
+  border-radius: 32px;
   height: 200px; 
+  padding-top: 16px;
   resize: none; 
 }
 
 .input-field::placeholder {
-  color: #3a2d42;
+  color: #29002c;
   font-weight: 500;
 }
 
 .btn-send {
-  margin-top: 32px;
-  background: rgba(16, 0, 44, 0.8);
-  color: #fff;
+  margin-top: 24px;
+  background: linear-gradient(100deg, #bf75f4 0%, #7540ed 50%, #7540ed 50%, #bf75f4 100%);
+  background-size: 200% 100%;
+  background-position: left center;
+  color: #19002d;
   border: none;
-  padding: 12px 60px;
+  padding: 10px 58px;
   border-radius: 50px;
   font-size: 18px;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(121, 4, 255, 0.4);
-  transition: all 0.3s ease;
+  box-shadow: 0 5px 14px rgba(121, 4, 255, 0.35);
+  transition: background-position 0.35s ease;
 }
 
 .btn-send:hover {
-  background: rgba(121, 4, 255, 0.9);
-  color: #fff;
-  box-shadow:
-    0 0 10px rgba(121, 4, 255, 0.8),          
-    0 0 20px rgba(121, 4, 255, 0.6);
+  background-position: right center;
 }
 
 .little-comment {
   margin-top: 12px;
-  color: #e4e4e4;
+  color: rgba(255, 255, 255, 0.7);
   font-style: italic;
   font-size: 11px;
 
