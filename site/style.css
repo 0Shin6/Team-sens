@@ -27,20 +27,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 48px;
+    gap: 32px;
 
     background: rgba(16, 0, 44, 0.6);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border-radius: 300px;
     box-shadow: 0 10px 25px rgba(121, 4, 255, 0.75);
-    padding: 10px 40px;
+    padding: 10px 36px;
     pointer-events: auto;
 }
 
 .theme-toggle-btn {
     position: absolute;
-    right: 20px;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 1000;
     display: flex;
     justify-content: center;
@@ -48,28 +50,34 @@ body {
     background: rgba(16, 0, 44, 0.6);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border: none;
+    border: 1px solid rgba(121, 4, 255, 0.35);
     border-radius: 50%;
-    box-shadow: 0 10px 25px rgba(121, 4, 255, 0.75);
-    width: 50px;
-    height: 50px;
+    box-shadow: 0 0 25px rgba(121, 4, 255, 0.75);
+    width: 48px;
+    height: 48px;
     cursor: pointer;
     color: white;
     pointer-events: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 35px rgba(160, 40, 255, 0.95);
 }
 
 .theme-toggle-btn .sun-icon {
-    display: none;
+    display: block;
 }
 .theme-toggle-btn .moon-icon {
-    display: block;
+    display: none;
 }
 
 body.light-theme .theme-toggle-btn .sun-icon {
-    display: block;
+    display: none;
 }
 body.light-theme .theme-toggle-btn .moon-icon {
-    display: none;
+    display: block;
 }
 
 .logo img {
@@ -95,6 +103,47 @@ body.light-theme .theme-toggle-btn .moon-icon {
         0 0 7px #d0d0d0,          
         0 0 21px #d0d0d0,       
         0 0 42px #d0d0d0;
+}
+
+@media (max-width: 1180px) {
+    .navbar.nav-pill {
+        gap: 20px;
+        padding: 8px 24px;
+    }
+    .navbar nav ul {
+        gap: 16px;
+    }
+    .navbar nav a {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 860px) {
+    .nav-wrapper {
+        position: relative;
+        top: 10px;
+        flex-direction: column;
+        gap: 12px;
+        padding: 0 16px;
+    }
+    .navbar.nav-pill {
+        border-radius: 30px;
+        padding: 12px 20px;
+    }
+    .theme-toggle-btn {
+        position: fixed;
+        right: 15px;
+        top: 15px;
+        transform: none;
+    }
+    .theme-toggle-btn:hover {
+        transform: scale(1.1);
+    }
+    .navbar nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 16px;
+    }
 }
 
 main {
@@ -438,74 +487,118 @@ footer {
 
 /* ======== STYLES DE LA PAGE BOUTIQUE ======== */
 
+.shop-page .hero h1 {
+  font-size: 44px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  color: #fff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(180, 80, 255, 0.8), 0 0 50px rgba(121, 4, 255, 0.6);
+}
+
 .hero .subtitle {
-  font-size: 18px;
-  color: #ffffff;
-  margin-bottom: 40px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 36px;
   font-weight: 400;
   text-shadow: none; 
+}
+
+.hero .subtitle strong {
+  color: #fff;
+  font-weight: 700;
 }
 
 .shop-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 36px;
   width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .product-card {
-  padding: 24px;
-  
-  width: 100%;
-  max-width: 360px; 
+  background: rgba(16, 0, 44, 0.75);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(121, 4, 255, 0.3);
+  border-radius: 40px !important;
+  box-shadow: 0 0 35px rgba(121, 4, 255, 0.65), 0 10px 25px rgba(121, 4, 255, 0.35);
+  padding: 24px 20px 30px;
+  width: 280px;
+  max-width: 100%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .product-image-container {
-  padding: 16px;
-  margin-bottom: 24px;
-  
+  width: 214px;
+  height: 214px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 40px;
+  overflow: hidden;
 }
 
 .product-image-container img {
   width: 100%;
+  height: 100%;
+  object-fit: contain;
   display: block;
-    border-radius : 15px;
+  border-radius: 40px;
 }
 
 .product-card .product-name {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
-  margin-bottom: 8px;
-  color: #ffff;
+  margin-bottom: 10px;
+  color: #fff;
+  letter-spacing: -0.2px;
 }
 
 .product-card .product-desc {
-  font-size: 14px;
-  color: #ccc;
-  margin-bottom: 16px;
+  font-size: 13px;
+  color: #cbbad8;
+  margin-bottom: 18px;
+  line-height: 1.4;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .product-card .product-price {
-  font-size: 24px;
-  font-weight: 900;
+  font-size: 18px;
+  font-weight: 800;
   color: #fff;
   display: block;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+  margin-top: auto;
 }
 
 .product-card .btn-buy {
+  width: 200px;
+  height: 45px;
   background: linear-gradient(100deg, #bf75f4 0%, #7540ed 50%, #7540ed 50%, #bf75f4 100%);
   background-size: 200% 100%;
   background-position: left center;
   color: #19002d;
   font-weight: 700;
+  font-size: 16px;
   text-decoration: none;
-  padding: 10px 32px;
-  border-radius: 30px;
-  display: inline-block;
+  border-radius: 22.5px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   box-shadow: 0 5px 14px rgba(121, 4, 255, 0.35);
   transition: background-position 0.35s ease;
+  cursor: pointer;
 }
 
 .product-card .btn-buy:hover {
@@ -513,10 +606,11 @@ footer {
 }
 
 .hero .small-print {
-  font-size: 12px;
-  font-style: italic;
-  color: #fafafa;
-  margin-top: 24px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 36px;
+  margin-bottom: 24px;
+  font-style: normal;
 }
 
 /* ======== STYLES DE LA PAGE ROSTER ======== */
@@ -885,19 +979,7 @@ footer {
     font-size: 10px;
 }
 
-/* ======== THEME TOGGLE ======== */
-.theme-toggle-btn {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 18px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
 
-.theme-toggle-btn:hover {
-    transform: scale(1.1);
-}
 
 /* ======== LIGHT THEME ======== */
 body.light-theme {

@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             desc: "Bienvenue sur notre site officiel #SensTouch"
         },
         {
-            img: "img/maillot.png", 
+            img: "img/maillot_blanc.svg", 
             desc: "LowSens remporte le tournoi d'hiver !"
         },
         {
