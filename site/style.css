@@ -614,6 +614,125 @@ footer {
 }
 
 /* ======== STYLES DE LA PAGE ROSTER ======== */
+
+.roster-page .hero h1 {
+  font-size: 44px;
+  font-weight: 900;
+  margin-bottom: 24px;
+  color: #fff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(180, 80, 255, 0.8), 0 0 50px rgba(121, 4, 255, 0.6);
+}
+
+.roster-hero {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.roster-coming-soon-card {
+  width: 100%;
+  max-width: 580px;
+  background: rgba(16, 0, 44, 0.75);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  box-shadow: 0 0 45px rgba(121, 4, 255, 0.45);
+  padding: 48px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.roster-badge-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  box-shadow: 0 0 25px rgba(190, 125, 251, 0.35);
+  color: #BE7DFB;
+}
+
+.roster-card-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+}
+
+.roster-card-desc {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 460px;
+}
+
+.roster-card-desc strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.btn-home {
+  background: linear-gradient(100deg, #bf75f4 0%, #7540ed 50%, #7540ed 50%, #bf75f4 100%);
+  background-size: 200% 100%;
+  background-position: left center;
+  color: #19002d;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 12px 32px;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 5px 18px rgba(121, 4, 255, 0.4);
+  transition: background-position 0.35s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-home:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(144, 92, 252, 0.6);
+}
+
+.btn-home svg {
+  transition: transform 0.2s ease;
+}
+
+.btn-home:hover svg {
+  transform: translateX(-4px);
+}
+
+@media (max-width: 620px) {
+  .roster-page .hero h1 {
+    font-size: 32px;
+  }
+  .roster-coming-soon-card {
+    padding: 36px 20px;
+    border-radius: 22px;
+  }
+  .roster-card-title {
+    font-size: 22px;
+  }
+  .roster-card-desc {
+    font-size: 14px;
+  }
+}
+
 .roster-container {
   display: flex;
   justify-content: center;
@@ -1262,4 +1381,35 @@ body.light-theme .reseaux-page .hero h1 {
 
 body.light-theme .reseaux-hero .subtitle {
     color: rgba(20, 0, 40, 0.75);
+}
+
+body.light-theme .roster-page .hero h1 {
+    color: #110026;
+    text-shadow: 0 0 15px rgba(180, 80, 255, 0.4);
+}
+
+body.light-theme .roster-coming-soon-card {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 30px rgba(121, 4, 255, 0.18);
+    color: #222;
+}
+
+body.light-theme .roster-card-title {
+    color: #110026;
+}
+
+body.light-theme .roster-card-desc {
+    color: rgba(20, 0, 40, 0.7);
+}
+
+body.light-theme .roster-card-desc strong {
+    color: #110026;
+}
+
+body.light-theme .roster-badge-icon {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #7540ed;
+    box-shadow: 0 0 20px rgba(121, 4, 255, 0.2);
 }
