@@ -1,0 +1,13 @@
+.DS_store
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+*.db-wal
+*.db-shm
+node_modules/
+site/node_modules/
+site/dist/
+site/.astro/
+.env
+backend/.env

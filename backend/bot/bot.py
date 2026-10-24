@@ -1,3 +1,4 @@
+from __future__ import annotations
 import os
 from pathlib import Path
 import sqlite3
@@ -9,12 +10,14 @@ env_path = Path(__file__).resolve().parents[1] / ".env"
 load_dotenv(dotenv_path=env_path)
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
-db_path = Path(__file__).resolve().parents[1] / "teamsens.db"
+db_path = Path(os.getenv("DB_PATH", str(Path(__file__).resolve().parents[1] / "teamsens.db")))
 
 
 def init_database() -> None:
+    db_path.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
+    c.execute("PRAGMA journal_mode=WAL;")
     c.execute(
         """
         CREATE TABLE IF NOT EXISTS teams (
@@ -22,6 +25,28 @@ def init_database() -> None:
             nom TEXT NOT NULL UNIQUE,
             abreviation TEXT NOT NULL UNIQUE,
             logo TEXT NOT NULL
+        )
+        """
+    )
+    c.execute(
+        """
+        CREATE TABLE IF NOT EXISTS matches (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            team_a TEXT NOT NULL,
+            team_b TEXT NOT NULL,
+            date_heure TEXT NOT NULL,
+            jeu TEXT DEFAULT 'Inconnu',
+            score TEXT DEFAULT '-'
+        )
+        """
+    )
+    c.execute(
+        """
+        CREATE TABLE IF NOT EXISTS news (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            titre TEXT NOT NULL,
+            image TEXT NOT NULL,
+            description TEXT NOT NULL
         )
         """
     )

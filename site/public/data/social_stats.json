@@ -1,0 +1,40 @@
+{
+  "instagram": {
+    "count": 49,
+    "formatted": "49 abonnés",
+    "label": "abonnés",
+    "is_live": true
+  },
+  "twitch": {
+    "count": 196,
+    "formatted": "196 followers",
+    "label": "followers",
+    "is_live": true
+  },
+  "youtube": {
+    "count": 0,
+    "formatted": "Bientôt",
+    "label": "abonnés",
+    "is_live": true
+  },
+  "twitter": {
+    "count": 103,
+    "formatted": "103 followers",
+    "label": "followers",
+    "is_live": true
+  },
+  "tiktok": {
+    "count": 2243,
+    "formatted": "2,2 k abonnés",
+    "label": "abonnés",
+    "is_live": true
+  },
+  "discord": {
+    "count": 325,
+    "formatted": "325 membres",
+    "label": "membres",
+    "is_live": true
+  },
+  "updated_at": "1792825800"
+}
+

@@ -1,0 +1,35 @@
+services:
+  bot:
+    build:
+      context: ./backend
+      dockerfile: bot/Dockerfile
+    container_name: lowsens-bot
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    environment:
+      - DB_PATH=/data/teamsens.db
+    volumes:
+      - ./data:/data
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: api/Dockerfile
+    container_name: lowsens-api
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    environment:
+      - DB_PATH=/data/teamsens.db
+      - PORT=3000
+    volumes:
+      - ./data:/data
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:3000/api/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+

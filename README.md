@@ -1,6 +1,6 @@
 # Low Sens
 
-Site officiel d'une structure e-sport, construit pour présenter son identité, ses équipes, ses actualités et ses compétitions. Le projet combine un site vitrine, une API Rust et un bot Discord pour administrer les données de la team.
+Site officiel d'une structure e-sport, construit pour présenter son identité, ses équipes, ses actualités et ses compétitions. Le projet combine un site vitrine propulsé par **Astro** et deux services **Python** indépendants (une API **FastAPI** et un bot **Discord**) partageant une base de données SQLite en mode WAL.
 
 ## Aperçu
 
@@ -8,90 +8,94 @@ Le site propose plusieurs pages dédiées à la structure :
 
 - accueil avec actualités et prochains matchs ;
 - présentation de l'équipe et de son identité visuelle ;
-- roster Valorant et profils des joueurs ;
-- réseaux sociaux et boutique ;
-- formulaire de contact relié à Discord.
+- page roster (avec annonce d'arrivée prochaine) ;
+- réseaux sociaux (avec compteurs de membres/abonnés en temps réel) et boutique ;
+- formulaire de contact relié directement à Discord.
 
-L'interface est responsive et s'appuie sur des carrousels JavaScript pour afficher les actualités et les matchs. Des données de secours permettent également à la page d'accueil de rester utilisable lorsque l'API n'est pas disponible.
+L'interface est responsive et intègre des données de secours permettant au site de rester 100 % fonctionnel (et prévisualisable sur GitHub Pages) lorsque l'API n'est pas joignable.
 
-## Architecture
+## Architecture (Option 1 — 2 services Python indépendants)
 
 ```text
 Team-sens/
-├── site/                 # Interface HTML, CSS, JavaScript et images
+├── site/                    # Frontend Astro (composants, layouts, pages, styles)
 ├── backend/
-│   ├── src/main.rs       # API HTTP Rust avec Axum
-│   └── bot/bot.py        # Bot Discord et commandes d'administration
-├── sens.fig              # Maquette Figma du projet
-└── .github/workflows/    # Vérification et déploiement GitHub Pages
+│   ├── api/
+│   │   ├── main.py          # Service 1 : API HTTP Python avec FastAPI
+│   │   ├── socials.py       # Récupération asynchrone des statistiques réseaux
+│   │   └── Dockerfile       # Conteneurisation de l'API
+│   ├── bot/
+│   │   ├── bot.py           # Service 2 : Bot Discord et commandes slash
+│   │   └── Dockerfile       # Conteneurisation du Bot
+│   └── requirements.txt     # Dépendances Python partagées
+├── docker-compose.yml       # Orchestration des 2 services avec auto-restart
+├── sens.fig                 # Maquette Figma du projet
+└── .github/workflows/       # Vérification (tests + build) et déploiement GitHub Pages
 ```
 
-### Site frontend
+### Site frontend (Astro)
 
-Le frontend est réalisé sans framework afin de garder une interface légère et facilement déployable. Il communique avec l'API pour récupérer les matchs et envoyer les messages du formulaire de contact.
+Le frontend est développé avec **Astro** pour mutualiser la barre de navigation, le footer et les layouts tout en générant du HTML/CSS/JS statique ultra-léger. En développement, un proxy Vite redirige automatiquement `/api/*` vers `http://127.0.0.1:3000`.
 
-### API backend
+### Service 1 : API backend (FastAPI)
 
-Le backend utilise Rust, Axum et SQLite. Il expose notamment :
+L'API Python utilise **FastAPI**, **Uvicorn** et **SQLite (mode WAL)**. Elle fonctionne de manière totalement autonome du bot Discord (si le bot redémarre ou tombe, l'API continue de servir le site et d'envoyer les messages de contact via l'API REST Discord) :
 
 | Méthode | Route | Rôle |
 | --- | --- | --- |
+| `GET` | `/api/health` | Vérifier l'état de santé de l'API |
 | `GET` | `/api/news` | Récupérer les dernières actualités |
 | `GET` | `/api/matches` | Récupérer les prochains matchs |
-| `POST` | `/api/contact` | Envoyer un message vers Discord |
+| `GET` | `/api/socials` | Récupérer les compteurs d'abonnés (Discord, Twitch, TikTok, X, YouTube) |
+| `POST` | `/api/contact` | Envoyer un message privé Discord aux administrateurs |
 
-### Bot Discord
+### Service 2 : Bot Discord (`discord.py`)
 
-Le bot Python permet de gérer les données depuis Discord avec des commandes slash :
+Le bot Python permet d'administrer les données depuis Discord avec des commandes slash :
 
 - ajouter, modifier, supprimer et afficher les matchs ;
 - ajouter, supprimer et afficher les équipes ;
 - ajouter et supprimer des actualités ;
 - vérifier les équipes utilisées lors de la création d'un match.
 
-Les données sont stockées dans une base SQLite partagée avec l'API.
+Les données sont stockées dans une base SQLite partagée (`teamsens.db` en mode `WAL` pour permettre les lectures et écritures simultanées sans verrouillage).
 
 ## Technologies
 
-- HTML5, CSS3 et JavaScript ;
-- Rust 2024, Axum, Tokio et SQLx ;
-- Python, `discord.py` et SQLite ;
-- GitHub Actions et GitHub Pages ;
-- Figma pour la conception de la maquette.
+- **Frontend** : Astro 5, HTML5, CSS3, JavaScript ;
+- **Backend API** : Python, FastAPI, Uvicorn, aiohttp, SQLite (WAL) ;
+- **Bot Discord** : Python, `discord.py`, `python-dotenv` ;
+- **Infrastructure & CI/CD** : Docker Compose, GitHub Actions et GitHub Pages ;
+- **Design** : Figma pour la conception de la maquette.
 
 ## Lancer le projet en local
 
-### 1. Afficher le site
+### 1. Afficher le site (Astro)
+
+Depuis le dossier `site` :
+
+```bash
+cd site
+npm install
+npm run dev
+```
+
+Puis ouvrir [http://localhost:4321](http://localhost:4321).
+
+Pour générer la version de production statique (`site/dist`) :
+
+```bash
+npm run build
+```
+
+### 2. Installer l'environnement Python
 
 Depuis la racine du projet :
 
 ```bash
-python3 -m http.server 8080 --directory site
-```
-
-Puis ouvrir [http://localhost:8080/acceuil.html](http://localhost:8080/acceuil.html).
-
-Le frontend attend l'API à l'adresse `http://127.0.0.1:3000`.
-
-### 2. Lancer l'API Rust
-
-La base `teamsens.db` doit être disponible dans `backend/` avec les tables attendues par l'application.
-
-```bash
-cd backend
-cargo run
-```
-
-L'API démarre sur `http://127.0.0.1:3000`.
-
-### 3. Lancer le bot Discord
-
-Installer les dépendances Python :
-
-```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install discord.py python-dotenv
+pip install -r backend/requirements.txt
 ```
 
 Créer `backend/.env` avec les variables nécessaires :
@@ -101,24 +105,36 @@ token_discord=VOTRE_TOKEN_DISCORD
 discord_recip=ID_DISCORD_1,ID_DISCORD_2
 ```
 
-Puis lancer le bot :
+### 3. Lancer l'API FastAPI (Service 1)
 
 ```bash
-python backend/bot/bot.py
+.venv/bin/uvicorn backend.api.main:app --reload --port 3000
 ```
 
-Ne jamais publier le fichier `.env` ni le token du bot.
+L'API démarre sur `http://127.0.0.1:3000` (documentation interactive disponible sur `http://127.0.0.1:3000/docs`).
+
+### 4. Lancer le Bot Discord (Service 2)
+
+```bash
+.venv/bin/python backend/bot/bot.py
+```
+
+### Alternative : Lancer les 2 services avec Docker Compose (Production)
+
+Les deux services tournent dans des conteneurs séparés avec `restart: unless-stopped` et partagent le volume SQLite :
+
+```bash
+docker compose up -d --build
+```
 
 ## Tests
 
-Les tests peuvent être lancés séparément depuis la racine du projet :
+Les suites de tests unitaires des deux services Python peuvent être lancées depuis la racine du projet :
 
 ```bash
-cargo test --manifest-path backend/Cargo.toml
 .venv/bin/python -m unittest discover -s backend/bot -p 'test_*.py'
+.venv/bin/python -m unittest discover -s backend/api -p 'test_*.py'
 ```
-
-Les tests Rust vérifient le format JSON envoyé au frontend. Les tests Python couvrent la normalisation des abréviations et les opérations principales sur les matchs et les équipes avec une base SQLite temporaire.
 
 ## CI/CD
 
@@ -126,9 +142,9 @@ Le workflow [`.github/workflows/ci-cd.yml`](.github/workflows/ci-cd.yml) s'exéc
 
 Il :
 
-1. vérifie la compilation du backend avec `cargo check` ;
-2. vérifie la syntaxe du bot avec `py_compile` ;
-3. publie automatiquement le dossier `site` sur GitHub Pages après un push validé sur `master`.
+1. vérifie la compilation statique du site Astro (`npm run build`) ;
+2. exécute les tests unitaires du bot Discord et de l'API FastAPI ;
+3. publie automatiquement le rendu statique (`site/dist`) sur GitHub Pages après un push validé sur `master`.
 
 Pour activer la publication, choisir **GitHub Actions** comme source dans `Settings > Pages` du dépôt GitHub.
 
